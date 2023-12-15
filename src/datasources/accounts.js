@@ -14,6 +14,7 @@ class Accounts extends MongoDataSource {
 
   // Read methods
   async getAccounts(userId) {
+    console.log(`query received. userId: ${userId}`);
     return await this.findByFields({ userId });
   }
 
