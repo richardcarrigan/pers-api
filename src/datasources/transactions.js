@@ -5,7 +5,6 @@ class Transactions extends MongoDataSource {
   // Add a new transaction to an account
   async addTransaction(
     description,
-    recurrence,
     amount,
     type,
     startDate,
@@ -14,7 +13,6 @@ class Transactions extends MongoDataSource {
   ) {
       const result = await this.collection.insertOne({
         description,
-        recurrence,
         amount: Number(amount),
         type,
         startDate: new Date(Number(startDate)),
@@ -33,7 +31,6 @@ class Transactions extends MongoDataSource {
   async updateTransaction(
     transactionId,
     description,
-    recurrence,
     amount,
     type,
     startDate,
@@ -45,7 +42,6 @@ class Transactions extends MongoDataSource {
         {
           $set: {
             description,
-            recurrence,
             amount: Number(amount),
             type,
         startDate: new Date(Number(startDate)),

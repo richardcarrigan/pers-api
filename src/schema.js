@@ -1,13 +1,6 @@
 const { gql } = require('apollo-server');
 
 const typeDefs = gql`
-  enum RecurrenceOptions {
-    none
-    daily
-    weekly
-    monthly
-  }
-
   enum TransactionTypes {
     income
     expense
@@ -28,7 +21,6 @@ const typeDefs = gql`
   type Transaction {
     _id: ID!
     description: String!
-    recurrence: RecurrenceOptions!
     amount: Float!
     type: TransactionTypes!
     startDate: String!
@@ -56,7 +48,6 @@ const typeDefs = gql`
 
     addTransaction(
       description: String!
-      recurrence: RecurrenceOptions!
       amount: Float!
       type: TransactionTypes!
       startDate: String!
@@ -67,7 +58,6 @@ const typeDefs = gql`
     updateTransaction(
       transactionId: ID!
       description: String!
-      recurrence: RecurrenceOptions!
       amount: Float!
       type: TransactionTypes!
       startDate: String!
