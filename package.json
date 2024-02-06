@@ -2,21 +2,21 @@
   "name": "pers-api",
   "version": "1.0.0",
   "description": "API for Pers mobile and web apps",
-  "main": "src/index.js",
+  "main": "api/index.js",
   "scripts": {
-    "start": "node src/index",
-    "dev": "nodemon src/index"
+    "start": "node api/index",
+    "dev": "nodemon api/index"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nihonjinboy85/pers.git"
+    "url": "git+https://github.com/richardcarrigan/pers.git"
   },
   "author": "Richard Carrigan <me@richardcarrigan.dev> (https://www.richardcarrigan.dev)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nihonjinboy85/pers/issues"
+    "url": "https://github.com/richardcarrigan/pers/issues"
   },
-  "homepage": "https://github.com/nihonjinboy85/pers#readme",
+  "homepage": "https://github.com/richardcarrigan/pers#readme",
   "dependencies": {
     "apollo-datasource-mongodb": "^0.5.4",
     "apollo-server": "^3.12.0",
