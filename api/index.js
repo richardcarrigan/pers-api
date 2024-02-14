@@ -10,7 +10,8 @@ const Transactions = require('./datasources/transactions');
 
 async function startApolloServer(typeDefs, resolvers) {
   const client = new MongoClient(
-    `mongodb+srv://richard:${process.env.DB_PASSWORD}@cluster0.9cc2omr.mongodb.net/?retryWrites=true&w=majority`
+    // ``
+    process.env.DB_CONNECTION_STRING
   );
   await client.connect();
 
