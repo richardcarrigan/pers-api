@@ -7,7 +7,8 @@ class Accounts extends MongoDataSource {
     const result = await this.collection.insertOne({
       name,
       balance,
-      userId
+      userId,
+      transactions: []
     });
     return await this.findOneById(result.insertedId);
   }
@@ -22,14 +23,15 @@ class Accounts extends MongoDataSource {
   }
 
   // Update methods
-  async updateAccount(accountId, name, balance) {
+  async updateAccount(accountId, name, balance, transactions) {
     await this.deleteFromCacheById(accountId);
     await this.collection.updateOne(
       { _id: ObjectId(accountId) },
       {
         $set: {
           name,
-          balance
+          balance,
+          transactions
         }
       }
     );

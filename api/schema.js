@@ -19,17 +19,17 @@ const typeDefs = gql`
   }
 
   type Transaction {
-    _id: ID!
     description: String!
     amount: Float!
     type: TransactionTypes!
     startDate: String!
-    displayOrder: Int!
-    account: Account!
   }
 
-  type DeleteTransactionPayload {
-    _id: ID!
+  input TransactionInput {
+    description: String!
+    amount: Float!
+    type: TransactionTypes!
+    startDate: String!
   }
 
   type Query {
@@ -42,29 +42,9 @@ const typeDefs = gql`
   type Mutation {
     addAccount(name: String!, balance: Float!, userId: String!): Account
 
-    updateAccount(accountId: ID!, name: String!, balance: Float!): Account
+    updateAccount(accountId: ID!, name: String!, balance: Float!, transactions: [TransactionInput]!): Account
 
     deleteAccount(accountId: ID!): DeleteAccountPayload
-
-    addTransaction(
-      description: String!
-      amount: Float!
-      type: TransactionTypes!
-      startDate: String!
-      accountId: ID!
-      displayOrder: Int!
-    ): Transaction
-
-    updateTransaction(
-      transactionId: ID!
-      description: String!
-      amount: Float!
-      type: TransactionTypes!
-      startDate: String!
-      displayOrder: Int!
-    ): Transaction
-
-    deleteTransaction(transactionId: ID!): DeleteTransactionPayload
   }
 `;
 
