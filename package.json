@@ -19,7 +19,7 @@
   "homepage": "https://github.com/richardcarrigan/pers#readme",
   "dependencies": {
     "apollo-datasource-mongodb": "^0.5.4",
-    "apollo-server": "^3.12.0",
+    "apollo-server": "^3.13.0",
     "graphql": "^16.8.1",
     "mongodb": "^4.17.2"
   },
