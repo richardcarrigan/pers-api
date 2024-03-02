@@ -1,7 +1,6 @@
-const { MongoDataSource } = require('apollo-datasource-mongodb');
-const { ObjectId } = require('mongodb');
-
-class Accounts extends MongoDataSource {
+import { MongoDataSource } from 'apollo-datasource-mongodb';
+import { ObjectId } from 'mongodb';
+export default class Accounts extends MongoDataSource {
   // Create methods
   async addAccount(name, balance, userId) {
     const result = await this.collection.insertOne({
@@ -26,7 +25,7 @@ class Accounts extends MongoDataSource {
   async updateAccount(accountId, name, balance, transactions) {
     await this.deleteFromCacheById(accountId);
     await this.collection.updateOne(
-      { _id: ObjectId(accountId) },
+      { _id: new ObjectId(accountId) },
       {
         $set: {
           name,
@@ -40,10 +39,8 @@ class Accounts extends MongoDataSource {
 
   // Delete methods
   async deleteAccount(accountId) {
-    await this.collection.deleteOne({ _id: ObjectId(accountId) });
+    await this.collection.deleteOne({ _id: new ObjectId(accountId) });
     await this.deleteFromCacheById(accountId);
     return { _id: accountId };
   }
 }
-
-module.exports = Accounts;

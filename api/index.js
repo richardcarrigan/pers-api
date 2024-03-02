@@ -1,34 +1,34 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
-const { MongoClient } = require('mongodb');
-const { ApolloServer } = require('apollo-server');
+import { MongoClient } from 'mongodb';
+import { ApolloServer } from '@apollo/server';
+import { startStandaloneServer } from '@apollo/server/standalone';
 
-const typeDefs = require('./schema');
-const resolvers = require('./resolvers');
-const Accounts = require('./datasources/accounts');
+import typeDefs from './schema.js';
+import resolvers from './resolvers.js';
+import Accounts from './datasources/accounts.js';
 
-async function startApolloServer(typeDefs, resolvers) {
-  const client = new MongoClient(
-    process.env.DB_CONNECTION_STRING
-  );
-  await client.connect();
+const client = new MongoClient(
+  process.env.DB_CONNECTION_STRING
+);
+client.connect();
 
-  const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    dataSources: () => ({
-      accounts: new Accounts(client.db().collection('accounts')),
-    })
-  });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers
+});
 
-  const { url, port } = await server.listen({
-    port: process.env.PORT
-  });
-  console.log(`
-    🚀  Server is running
-    🔉  Listening on port ${port}
-    📭  Query at ${url}
-  `);
-}
+const { url } = await startStandaloneServer(server, {
+  context: async ({ req }) => ({
+    dataSources: {
+      accounts: new Accounts({ modelOrCollection: client.db().collection('accounts') })
+    }
+  }),
+  listen: { port: process.env.PORT }
+});
 
-startApolloServer(typeDefs, resolvers);
+console.log(`
+  🚀  Server is running
+  📭  Query at ${url}
+`);

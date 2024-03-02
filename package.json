@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "API for Pers mobile and web apps",
   "main": "api/index.js",
+  "type": "module",
   "scripts": {
     "start": "node api/index",
     "dev": "nodemon api/index"
@@ -18,10 +19,9 @@
   },
   "homepage": "https://github.com/richardcarrigan/pers#readme",
   "dependencies": {
-    "apollo-datasource-mongodb": "^0.5.4",
-    "apollo-server": "^3.13.0",
-    "graphql": "^16.8.1",
-    "mongodb": "^4.17.2"
+    "@apollo/server": "^4.10.0",
+    "apollo-datasource-mongodb": "^0.6.0",
+    "mongodb": "^5.9.2"
   },
   "devDependencies": {
     "dotenv": "^16.4.5",
