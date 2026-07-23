@@ -18,13 +18,13 @@
   },
   "homepage": "https://github.com/richardcarrigan/pers#readme",
   "dependencies": {
-    "@apollo/server": "^5.4.0",
+    "@apollo/server": "^5.5.1",
     "apollo-datasource-mongodb": "^0.6.0",
-    "graphql": "^16.8.1",
-    "mongodb": "^5.9.2"
+    "graphql": "^16.11.0",
+    "mongodb": "^7.5.0"
   },
   "devDependencies": {
-    "dotenv": "^16.4.5",
-    "nodemon": "^3.1.0"
+    "dotenv": "^17.4.2",
+    "nodemon": "^3.1.14"
   }
 }
